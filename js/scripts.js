@@ -5,7 +5,9 @@ var roll = function () {
 
 }
 
+overalltotal1 = [];
 player1TurnRolls = [];
+
 
 var turns = function() {
   var total = 0;
@@ -22,24 +24,28 @@ return total;
 $(document).ready(function() {
   $("#roll1").click(function(event) {
     player1TurnRolls.push(roll());
-    if (player1TurnRolls[-1] === "1") {
-      alert("turn over!")
-    }
+    p1reversed = player1TurnRolls.reverse();
+    if (p1reversed[0] === 1) {
+      alert("your turn over!")
+      player1TurnRolls = [];
 
+}
+    console.log(player1TurnRolls)
 
 
     $(".currentRoll1").text("Rolls: " + player1TurnRolls + ",");
 
-
     $(".turnTotal1").text("turn total: " + turns())
-
-
-
-
 
     event.preventDefault();
 
   })
+    $("#hold1").click(function(event) {
+      overalltotal1.push(turns());
+    $(".overalltotal1").text("Overall total: " + overalltotal1);
+    player1TurnRolls = [];
+})
+
 });
 
 // turnTotal = roll1 + roll2 + roll3 + roll4...ect
